@@ -22,7 +22,8 @@ parser.parse().then((data) => {
           score: parts[i + 2],
         });
       }
-      console.log("🦆 ~ grouped:", grouped);
+      grouped.sort((a, b) => b.score - a.score);
+
       return { key, grouped };
     }),
   }));
@@ -62,42 +63,22 @@ const active = ref(["0"]);
           <div
             v-for="(entry, i) in item.content"
             :key="i"
-            class="flex justify-start border border-secondary py-8"
+            class="flex flex-col justify-center border border-secondary"
           >
-            <UAvatarGroup
-              size="xl"
-              :ui="{
-                root: ' transform rotate-150 w-[25vw]',
-                base: 'transform -rotate-150 ring-0 ring-offset-0',
-              }"
+            <div
+              v-for="(each, ii) in entry.grouped"
+              :key="ii"
+              class="p-2 flex items-center gap-4 justify-between"
             >
               <UAvatar
                 src="https://github.com/benjamincanac.png"
                 alt="Benjamin Canac"
+                class="w-18 h-18"
               />
-              <UAvatar src="https://github.com/romhml.png" alt="Romain Hamel" />
-              <UAvatar src="https://github.com/noook.png" alt="Neil Richter" />
-              <UAvatar src="https://github.com/noook.png" alt="Neil Richter" />
-            </UAvatarGroup>
-            <div class="flex transform rotate-90 ml-6 w-[25vw]">
-              <div
-                v-for="(player, j) in entry.grouped"
-                :key="player.id + '-name'"
-                class="w-20 flex items-center justify-start text-secondary text-xs transform -rotate-90"
-              >
-                {{ player.name }}
-              </div>
-            </div>
-
-            <!-- player scores -->
-            <div class="flex -space-x-4 transform rotate-90 ml-6">
-              <div
-                v-for="(player, j) in entry.grouped"
-                :key="player.id + '-score'"
-                class="w-10 flex items-center justify-center text-secondary text-xs font-bold transform -rotate-90"
-              >
-                {{ player.score }}
-              </div>
+              <p @click="$router.push(`profile/${each.id}`)" class="flex-start">
+                {{ each.name }}
+              </p>
+              <p class="font-semibold">{{ each.score }}</p>
             </div>
           </div>
         </template>
