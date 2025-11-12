@@ -7,12 +7,39 @@ const images = [
   { name: "Toko mahjong", src: "/Toko mahjong.jpg" },
   { name: "雀友LOGO", src: "/雀友LOGO.jpg" },
 ];
+const schedule = [
+  {
+    day: "Saturday, 6 December 2025",
+    items: [
+      ["08:30 - 09:00", "Registration"],
+      ["09:00 - 10:30", "1st Hanchan"],
+      ["10:30 - 12:00", "2nd Hanchan"],
+      ["12:00 - 13:30", "3rd Hanchan"],
+      ["13:30 - 14:30", "Lunch Break"],
+      ["14:30 - 16:00", "4th Hanchan"],
+      ["16:00 - 17:30", "5th Hanchan"],
+      ["17:30 - 19:00", "6th Hanchan"],
+    ],
+  },
+  {
+    day: "Sunday, 7 December 2025",
+    items: [
+      ["09:00 - 10:30", "1st Hanchan"],
+      ["10:30 - 12:00", "2nd Hanchan"],
+      ["12:00 - 13:30", "3rd Hanchan"],
+      ["13:30 - 14:30", "Lunch Break"],
+      ["14:30 - 16:00", "4th Hanchan"],
+      ["16:00 - 17:30", "5th Hanchan"],
+      ["17:30 - 19:00", "6th Hanchan"],
+      ["19:00 - 19:30", "Closing Ceremony"],
+    ],
+  },
+];
 </script>
 
 <template>
-  <div>
-    <SectionHeader />
-    <NuxtImg class="p-8" :src="'/Iirc no background.png'" />
+  <div class="h-dvh">
+    <NuxtImg class="p-8 w-[50vh]" :src="'/Iirc no background.png'" />
     <div class="text-center text-3xl font-semibold leading-tight">
       <p class="text-blue-900">
         Indonesia <span class="text-red-800">International</span>
@@ -20,11 +47,47 @@ const images = [
       <p class="text-blue-900">Riichi Championship</p>
       <p class="text-red-800 font-bold">2025</p>
     </div>
+    <div
+      class="grid grid-cols-2 place-items-center bg-secondary h-[10vh] text-white font-bold text-xl"
+    >
+      <UModal>
+        <div>Schedule</div>
+        <template #content>
+          <UCard>
+            <div class="max-w-2xl mx-auto text-sm text-white">
+              <div v-for="(day, d) in schedule" :key="d" class="mb-6">
+                <h2 class="text-lg font-bold text-center bg-primary py-2">
+                  {{ day.day }}
+                </h2>
+                <div
+                  class="grid grid-cols-2 gap-x-6 gap-y-2 bg-gray-100 p-4 text-gray-900"
+                >
+                  <template v-for="(item, i) in day.items" :key="i">
+                    <div>{{ item[0] }}</div>
+                    <div>
+                      <span
+                        v-html="
+                          item[1].includes('Hanchan')
+                            ? item[1]
+                            : `<b>${item[1]}</b>`
+                        "
+                      ></span>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </UCard>
+        </template>
+      </UModal>
+
+      <div>Leaderboard</div>
+    </div>
     <div class="flex justify-center">
-      <NuxtImg src="/Logo RC.png" class="w-48 h-48 object-contain" />
+      <NuxtImg src="/Logo RC.png" class="w-24 h-24 object-contain" />
       <NuxtImg
         src="/Riichi ID white background.png"
-        class="w-42 h-42 object-contain"
+        class="w-24 h-24 object-contain"
       />
     </div>
     <UMarquee
@@ -41,7 +104,7 @@ const images = [
         <NuxtImg
           :src="img.src"
           :alt="img.name"
-          class="w-32 h-32 object-contain"
+          class="w-16 h-16 object-contain"
         />
       </div>
     </UMarquee>
