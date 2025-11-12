@@ -15,7 +15,6 @@ const profile = ref<{ [key: string]: string } | null>(null);
 
 parser.parse().then((data) => {
   const foundData = data.find((row) => row.id === id) || null;
-  console.log("🦆 ~ foundData:", foundData);
 
   const chartData = Object.entries(foundData)
     .filter(([key]) => !isNaN(Number(key)))
@@ -33,26 +32,40 @@ parser.parse().then((data) => {
   };
 
   profile.value = merged;
-  console.log("🦆 ~ profile:", profile.value.chartData);
 });
 
 const categories: Record<string, BulletLegendItemInterface> = {
-  score: { name: "Rank", color: "#3b82f6" },
+  score: { name: "Score", color: "#22c55e" },
 };
 const xFormatter = (tick: number, _i?: number, _ticks?: number[]): string => {
   return String(profile?.value?.chartData?.[tick]?.date ?? "");
 };
 const yFormatter = (value: number) => String(value);
+
+interface MarkerConfig {
+  type?: "circle" | "square" | "triangle" | "diamond";
+  size?: number;
+  strokeWidth?: number;
+  color?: string;
+  strokeColor?: string;
+}
+const MarkerConfig = {
+  type: "circle",
+  size: 18,
+  color: "#22c55e",
+  strokeColor: "#22c55e",
+  strokeWidth: 20,
+};
 </script>
 
 <template>
-  <div>
+  <div class="bg-[#FFFEFA]">
     <div>{{ profile?.name }}</div>
     <div>{{ profile?.country }}</div>
     <div>{{ profile?.name }}</div>
     <LineChart
       :data="profile?.chartData"
-      :height="200"
+      :height="100"
       y-label="Rank"
       :x-num-ticks="24"
       :y-num-ticks="4"
@@ -62,6 +75,15 @@ const yFormatter = (value: number) => String(value);
       :y-formatter="yFormatter"
       :y-grid-line="true"
       :curve-type="CurveType.Linear"
+      :marker-config="MarkerConfig"
+      :hide-y-axis="true"
     />
+    <!-- :hide-x-axis="true" -->
   </div>
 </template>
+
+<style scoped>
+.markers:deep(*[stroke="#22c55e"]) {
+  marker: url("#circle-marker-score");
+}
+</style>
