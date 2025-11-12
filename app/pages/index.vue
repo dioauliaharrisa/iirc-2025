@@ -48,7 +48,7 @@ const schedule = [
       <p class="text-red-800 font-bold">2025</p>
     </div>
     <div
-      class="grid grid-cols-2 place-items-center bg-secondary h-[10vh] text-white font-bold text-xl"
+      class="grid grid-rows-2 grid-cols-2 place-items-center bg-secondary h-[20vh] text-white font-bold text-xl"
     >
       <UModal>
         <div>Schedule</div>
@@ -82,6 +82,7 @@ const schedule = [
       </UModal>
 
       <div>Leaderboard</div>
+      <div @click="$router.push('table-result')">Table Results</div>
     </div>
     <div class="flex justify-center">
       <NuxtImg src="/Logo RC.png" class="w-24 h-24 object-contain" />
