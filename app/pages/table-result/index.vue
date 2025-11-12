@@ -55,7 +55,7 @@ const active = ref(["0"]);
             <div
               v-for="(score, j) in ['Andy', 'Fai', 'Yi', 'Yo']"
               :key="j"
-              class="w-10 h-10 flex items-center justify-start text-secondary text-md transform -rotate-90"
+              class="w-10 h-10 flex items-center justify-start text-secondary text-xs transform -rotate-90"
             >
               {{ score }}
             </div>
@@ -64,7 +64,7 @@ const active = ref(["0"]);
             <div
               v-for="(score, j) in ['+30.5', '5', '-12', '-40']"
               :key="j"
-              class="w-10 h-10 flex items-center justify-center text-secondary text-md font-bold transform -rotate-90"
+              class="w-10 h-10 flex items-center justify-center text-secondary text-xs font-bold transform -rotate-90"
             >
               {{ score }}
             </div>
