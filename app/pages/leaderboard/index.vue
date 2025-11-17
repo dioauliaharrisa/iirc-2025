@@ -21,22 +21,36 @@ parser.parse().then((data) => {
     .sort((a, b) => Number(b.scoreTotalP) - Number(a.scoreTotalP));
 });
 const UAvatar = resolveComponent("UAvatar");
+
+const router = useRouter();
+
 const columns = [
   {
     accessorKey: "urlPhoto",
     header: "Photo",
     cell: ({ row }) => {
       console.log("🦆 ~ row:", row);
-      return h("div", { class: "flex items-center gap-3" }, [
-        h(UAvatar, {
-          src: row.original.urlPhoto,
-          size: "3xl",
-        }),
-        h("div", undefined, [
-          h("p", { class: "font-medium text-highlighted" }, row.original.name),
-          h("p", { class: "" }, `@${row.original.username}`),
-        ]),
-      ]);
+      return h(
+        "div",
+        {
+          class: "flex items-center gap-3",
+          onClick: () => router.push(`/profile/${row.original.id}`),
+        },
+        [
+          h(UAvatar, {
+            src: row.original.urlPhoto,
+            size: "3xl",
+          }),
+          h("div", undefined, [
+            h(
+              "p",
+              { class: "font-medium text-highlighted" },
+              row.original.name
+            ),
+            h("p", { class: "" }, `@${row.original.username}`),
+          ]),
+        ]
+      );
     },
   },
   {
