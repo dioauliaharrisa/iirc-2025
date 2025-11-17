@@ -9,16 +9,16 @@ const parser = new PublicGoogleSheetsParser(
 const items = ref<{ [key: string]: string }[]>([]);
 
 parser.parse().then((data) => {
-  items.value = data.map((item) => {
-    // console.log("🦆 ~ item:", item);
-    return {
-      ...item,
-      urlPhoto: item.urlPhoto
-        ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
-        : null,
-    };
-  });
-  // console.log("🦆 ~ items:", items);
+  items.value = data
+    .map((item) => {
+      return {
+        ...item,
+        urlPhoto: item.urlPhoto
+          ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
+          : null,
+      };
+    })
+    .sort((a, b) => Number(b.scoreTotalP) - Number(a.scoreTotalP));
 });
 const UAvatar = resolveComponent("UAvatar");
 const columns = [
