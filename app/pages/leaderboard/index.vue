@@ -9,25 +9,51 @@ const parser = new PublicGoogleSheetsParser(
 const items = ref<{ [key: string]: string }[]>([]);
 
 parser.parse().then((data) => {
-  console.log("🦆 ~ data:", data);
-  items.value = data.map((item) => ({
-    ...item,
-    urlPhoto: item.urlPhoto
-      ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
-      : null,
-  }));
-  console.log("🦆 ~ items:", items);
+  items.value = data.map((item) => {
+    // console.log("🦆 ~ item:", item);
+    return {
+      ...item,
+      urlPhoto: item.urlPhoto
+        ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
+        : null,
+    };
+  });
+  // console.log("🦆 ~ items:", items);
 });
+const UAvatar = resolveComponent("UAvatar");
+const columns = [
+  {
+    accessorKey: "urlPhoto",
+    header: "Photo",
+    cell: ({ row }) => {
+      console.log("🦆 ~ row:", row);
+      return h("div", { class: "flex items-center gap-3" }, [
+        h(UAvatar, {
+          src: row.original.urlPhoto,
+          size: "3xl",
+        }),
+        h("div", undefined, [
+          h("p", { class: "font-medium text-highlighted" }, row.original.name),
+          h("p", { class: "" }, `@${row.original.username}`),
+        ]),
+      ]);
+    },
+  },
+  {
+    accessorKey: "scoreTotalP",
+    header: "Score",
+  },
+];
 </script>
 
 <template>
-  <UTable :data="items || []" class="w-dvw">
-    <template #name-cell="{ row }">
+  <UTable :data="items || []" :columns="columns" class="">
+    <!-- <template #url-photo-cell="{ row }">
       <UAvatar
         :src="row.original.urlPhoto"
-        size="lg"
+        size="3xl"
         :alt="`${row.original.name} avatar`"
       />
-    </template>
+    </template> -->
   </UTable>
 </template>
