@@ -81,8 +81,12 @@ const schedule = [
         </template>
       </UModal>
 
-      <div>Leaderboard</div>
-      <div @click="$router.push('table-result')">Table Results</div>
+      <div class="cursor-pointer" @click="$router.push('leaderboard')">
+        Leaderboard
+      </div>
+      <div class="cursor-pointer" @click="$router.push('table-result')">
+        Table Results
+      </div>
     </div>
     <div class="flex justify-center">
       <NuxtImg src="/Logo RC.png" class="w-24 h-24 object-contain" />
