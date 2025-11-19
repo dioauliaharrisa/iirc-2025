@@ -33,23 +33,6 @@ const active = ref(["0"]);
 
 <template>
   <div>
-    <UHeader
-      :ui="{
-        root: 'bg-gray-100',
-        toggle: 'hidden', // hides hamburger button
-      }"
-    >
-      <template #left>
-        <NuxtImg
-          class="h-12 w-auto"
-          :src="'Iirc background.png'"
-          :toggle="false"
-        />
-      </template>
-      <template #right>
-        <p class="text-2xl text-primary font-semibold">Table Result</p>
-      </template>
-    </UHeader>
     <div>
       <UAccordion
         v-model="active"

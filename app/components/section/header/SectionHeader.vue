@@ -32,34 +32,30 @@ const schedule = [
 </script>
 
 <template>
-  <UHeader title="IIRC 2025" mode="slideover">
+  <UHeader
+    :ui="{
+      root: 'bg-primary sticky bottom-0 z-50 ',
+      toggle: 'hidden', // hides hamburger button
+    }"
+  >
+    <template #left>
+      <UIcon
+        name="i-material-symbols:home"
+        class="size-5 text-white"
+        @click="$router.push('/')"
+      />
+    </template>
     <template #body>
-      <UModal>
-        <UNavigationMenu
-          :items="items"
-          orientation="vertical"
-          class="-mx-2.5"
-        />
-        <template #content>
-          <UCard>
-            <template #header>Schedule</template>
-            <div v-for="(day, i) in schedule" :key="i" class="space-y-3">
-              <p class="font-semibold">{{ day.day }}</p>
-              <USeparator />
-
-              <div class="grid grid-cols-3 gap-2 items-center">
-                <template v-for="(event, j) in day.events" :key="j">
-                  <p>{{ event.time }}</p>
-                  <USeparator orientation="vertical" class="h-4 mx-auto" />
-                  <p>{{ event.activity }}</p>
-                </template>
-              </div>
-
-              <USeparator v-if="i < schedule.length - 1" class="my-2" />
-            </div>
-          </UCard>
-        </template>
-      </UModal>
+      <p class="text-lg text-white font-semibold text-right">
+        Indonesia International Riichi Competition
+      </p>
+    </template>
+    <template #right>
+      <NuxtImg
+        class="h-12 w-auto"
+        :src="'Iirc background.png'"
+        :toggle="false"
+      />
     </template>
   </UHeader>
 </template>

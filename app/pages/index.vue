@@ -38,7 +38,7 @@ const schedule = [
 </script>
 
 <template>
-  <div class="h-dvh">
+  <div class="">
     <NuxtImg class="p-8 w-[50vh]" :src="'/Iirc no background.png'" />
     <div class="text-center text-3xl font-semibold leading-tight">
       <p class="text-blue-900">
@@ -86,6 +86,9 @@ const schedule = [
       </div>
       <div class="cursor-pointer" @click="$router.push('table-result')">
         Table Results
+      </div>
+      <div class="cursor-pointer" @click="$router.push('table-result')">
+        Top 4 Leaderboard
       </div>
     </div>
     <div class="flex justify-center">
