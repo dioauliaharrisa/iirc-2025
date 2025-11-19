@@ -9,16 +9,15 @@ const parser = new PublicGoogleSheetsParser(
 const items = ref<{ [key: string]: string }[]>([]);
 
 parser.parse().then((data) => {
-  items.value = data
-    .map((item) => {
-      return {
-        ...item,
-        urlPhoto: item.urlPhoto
-          ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
-          : null,
-      };
-    })
-    .sort((a, b) => Number(b.scoreTotalP) - Number(a.scoreTotalP));
+  items.value = data.map((item) => {
+    return {
+      ...item,
+      urlPhoto: item.urlPhoto
+        ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
+        : null,
+    };
+  });
+  // .sort((a, b) => Number(b.scoreTotalP) - Number(a.scoreTotalP));
 });
 const UAvatar = resolveComponent("UAvatar");
 
@@ -64,5 +63,5 @@ const columns = [
 </script>
 
 <template>
-  <UTable :data="items || []" :columns="columns" class=""> </UTable>
+  <UTable :data="items || []" :columns="columns"> </UTable>
 </template>
