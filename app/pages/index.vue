@@ -88,7 +88,7 @@ const schedule = [
         Table Results
       </div>
       <div class="cursor-pointer" @click="$router.push('table-result')">
-        Top 4 Leaderboard
+        Player List
       </div>
     </div>
     <div class="flex justify-center">

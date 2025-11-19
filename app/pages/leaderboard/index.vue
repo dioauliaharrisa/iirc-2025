@@ -29,7 +29,6 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Photo",
     cell: ({ row }) => {
-      console.log("🦆 ~ row:", row);
       return h(
         "div",
         {
@@ -61,13 +60,5 @@ const columns = [
 </script>
 
 <template>
-  <UTable :data="items || []" :columns="columns" class="">
-    <!-- <template #url-photo-cell="{ row }">
-      <UAvatar
-        :src="row.original.urlPhoto"
-        size="3xl"
-        :alt="`${row.original.name} avatar`"
-      />
-    </template> -->
-  </UTable>
+  <UTable :data="items || []" :columns="columns" class=""> </UTable>
 </template>
