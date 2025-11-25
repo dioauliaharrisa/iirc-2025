@@ -6,6 +6,7 @@ const images = [
   // { name: "Riichi id", src: "/Riichi id.jpeg" },
   { name: "Toko mahjong", src: "/Toko mahjong.jpg" },
   { name: "雀友LOGO", src: "/雀友LOGO.jpg" },
+  { name: "Ynsnobg", src: "Ynsnobg.png" },
 ];
 const schedule = [
   {
@@ -93,11 +94,11 @@ const schedule = [
       </div>
     </div>
     <div class="flex justify-center">
-      <NuxtImg src="/Logo RC.png" class="w-24 h-24 object-contain" />
       <NuxtImg
         src="/Riichi ID white background.png"
         class="w-24 h-24 object-contain"
       />
+      <NuxtImg src="/Logo RC.png" class="w-24 h-24 object-contain" />
     </div>
     <UMarquee
       pause-on-hover
