@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import type { AccordionItem } from "@nuxt/ui";
+import photos from "../../../codeUrlPhoto.json";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
 const options = { sheetName: "Display_Match_Up", useFormat: true };
@@ -10,8 +11,9 @@ const parser = new PublicGoogleSheetsParser(
 const items = ref<{ [key: string]: string }[]>([]);
 parser.parse().then((data) => {
   items.value = data.map((row, index) => ({
-    label: `Round ${index + 1}`,
+    label: `Hanchan ${index + 1}`,
     content: Object.entries(row).map(([key, value]) => {
+      console.log("🦆 ~ value:", value);
       const parts = value.split(",").map((v) => v.trim());
 
       const grouped = [];
@@ -20,6 +22,7 @@ parser.parse().then((data) => {
           id: parts[i],
           name: parts[i + 1],
           score: parts[i + 2],
+          urlPhoto: photos[parts[i]] || null,
         });
       }
       grouped.sort((a, b) => b.score - a.score);
@@ -27,6 +30,7 @@ parser.parse().then((data) => {
       return { key, grouped };
     }),
   }));
+  console.log("🦆 ~ items:", items.value);
 });
 const active = ref(["0"]);
 </script>
@@ -54,7 +58,7 @@ const active = ref(["0"]);
               class="p-2 flex items-center gap-4 justify-between"
             >
               <UAvatar
-                src="https://github.com/benjamincanac.png"
+                :src="each.urlPhoto"
                 alt="Benjamin Canac"
                 class="w-18 h-18"
               />
