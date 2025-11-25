@@ -2,7 +2,7 @@
 // import type { AccordionItem } from "@nuxt/ui";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const options = { sheetName: "Display_Preliminary_Match_Up", useFormat: true };
+const options = { sheetName: "Display_Match_Up", useFormat: true };
 const parser = new PublicGoogleSheetsParser(
   "1dL4cYaN3_5p7RGndKyIg14YcEwwcZSMedk5-QCJfMBE",
   options
