@@ -28,31 +28,54 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Photo",
     cell: ({ row }) => {
-      return h(
-        "div",
-        {
-          class: "flex items-center gap-3",
-          onClick: () => router.push(`/profile/${row.original.id}`),
-        },
-        [
-          h(UAvatar, {
-            src: row.original.urlPhoto,
-            size: "3xl",
-          }),
-          h("div", undefined, [
-            h(
-              "p",
-              { class: "font-medium text-highlighted" },
-              row.original.name
-            ),
-            h(NuxtImg, {
-              src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg",
-              class: "w-6 h-6 object-cover rounded-md", // adjust size
-              alt: row.original.name,
+      const isSpecialRow = row.index === 8;
+
+      if (isSpecialRow) {
+        return h("div", { class: "flex flex-col gap-2" }, [
+          h(
+            "div",
+            {
+              class: "flex items-center gap-3 h-16",
+              onClick: () => router.push(`/profile/${row.original.id}`),
+            },
+            [
+              h("div", undefined, [
+                h(
+                  "p",
+                  { class: "font-medium text-highlighted" },
+                  row.original.name
+                ),
+              ]),
+            ]
+          ),
+        ]);
+      } else {
+        return h(
+          "div",
+          {
+            class: "flex items-center gap-3",
+            onClick: () => router.push(`/profile/${row.original.id}`),
+          },
+          [
+            h(UAvatar, {
+              src: row.original.urlPhoto,
+              size: "3xl",
             }),
-          ]),
-        ]
-      );
+            h("div", undefined, [
+              h(
+                "p",
+                { class: "font-medium text-highlighted" },
+                row.original.name
+              ),
+              h(NuxtImg, {
+                src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg",
+                class: "w-6 h-6 object-cover rounded-md", // adjust size
+                alt: row.original.name,
+              }),
+            ]),
+          ]
+        );
+      }
     },
   },
   {

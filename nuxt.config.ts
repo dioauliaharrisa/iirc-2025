@@ -8,6 +8,10 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxt/icon",
     "nuxt-charts",
+    "@nuxtjs/color-mode",
   ],
   css: ["~/assets/css/main.css"],
+  colorMode: {
+    preference: "light",
+  },
 });

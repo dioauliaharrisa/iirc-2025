@@ -11,7 +11,8 @@ const schedule = [
   {
     day: "Saturday, 6 December 2025",
     items: [
-      ["08:30 - 09:00", "Registration"],
+      ["08:30 - 08:50", "Registration"],
+      ["08:50 - 09:00", "Opening Speech"],
       ["09:00 - 10:30", "1st Hanchan"],
       ["10:30 - 12:00", "2nd Hanchan"],
       ["12:00 - 13:30", "3rd Hanchan"],
@@ -24,13 +25,13 @@ const schedule = [
   {
     day: "Sunday, 7 December 2025",
     items: [
-      ["09:00 - 10:30", "1st Hanchan"],
-      ["10:30 - 12:00", "2nd Hanchan"],
-      ["12:00 - 13:30", "3rd Hanchan"],
-      ["13:30 - 14:30", "Lunch Break"],
-      ["14:30 - 16:00", "4th Hanchan"],
-      ["16:00 - 17:30", "5th Hanchan"],
-      ["17:30 - 19:00", "6th Hanchan"],
+      ["09:00 - 10:30", "7th Hanchan"],
+      ["10:30 - 12:00", "8th Hanchan"],
+      ["12:00 - 13:00", "Lunch Break"],
+      ["13:30 - 14:30", "9th Hanchan"],
+      ["14:30 - 16:00", "10th Hanchan"],
+      ["16:00 - 17:30", "11th Hanchan"],
+      ["17:30 - 19:00", "12th Hanchan"],
       ["19:00 - 19:30", "Closing Ceremony"],
     ],
   },
