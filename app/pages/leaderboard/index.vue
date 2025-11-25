@@ -28,6 +28,7 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Photo",
     cell: ({ row }) => {
+      console.log("🦆 ~ row:", row);
       const isSpecialRow = row.index === 8;
 
       if (isSpecialRow) {
@@ -36,7 +37,7 @@ const columns = [
             "div",
             {
               class: "flex items-center gap-3 h-16",
-              onClick: () => router.push(`/profile/${row.original.id}`),
+              onClick: () => router.push(`/profile/${row.original.name}`),
             },
             [
               h("div", undefined, [
@@ -54,7 +55,7 @@ const columns = [
           "div",
           {
             class: "flex items-center gap-3",
-            onClick: () => router.push(`/profile/${row.original.id}`),
+            onClick: () => router.push(`/profile/${row.original.playerID}`),
           },
           [
             h(UAvatar, {

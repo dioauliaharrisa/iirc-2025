@@ -2,7 +2,7 @@
 // import type { AccordionItem } from "@nuxt/ui";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const options = { sheetName: "Display_Profile", useFormat: true };
+const options = { sheetName: "Display_Profile_P", useFormat: true };
 const parser = new PublicGoogleSheetsParser(
   "1dL4cYaN3_5p7RGndKyIg14YcEwwcZSMedk5-QCJfMBE",
   options
@@ -15,6 +15,7 @@ const profile = ref<{ [key: string]: string } | null>(null);
 
 parser.parse().then((data) => {
   const foundData = data.find((row) => row.id === id) || null;
+  console.log("🦆 ~ foundData:", data);
 
   const chartData = Object.entries(foundData)
     .filter(([key]) => !isNaN(Number(key)))
