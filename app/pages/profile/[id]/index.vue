@@ -84,14 +84,25 @@ const MarkerConfig = {
 <template>
   <div class="bg-[#FFFEFA] p-4">
     <div class="flex gap-4">
-      <UAvatar
-        :src="profile?.urlPicture"
-        alt="Benjamin Canac"
-        class="w-18 h-18"
-      />
+      <div>
+        <UAvatar
+          :src="profile?.urlPicture"
+          alt="Benjamin Canac"
+          class="w-18 h-18"
+        />
+      </div>
       <div>
         <div class="text-xl font-semibold">{{ profile?.name }}</div>
-        <div>{{ profile?.country }}</div>
+        <!-- <div>{{ profile?.country }}</div> -->
+        <NuxtImg
+          width="30"
+          :alt="profile?.name"
+          :src="
+            profile?.country === 'TW'
+              ? 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg'
+              : `https://purecatamphetamine.github.io/country-flag-icons/3x2/${profile?.country}.svg`
+          "
+        />
       </div>
     </div>
     <div class="p-4 py-8">
