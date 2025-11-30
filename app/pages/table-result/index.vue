@@ -40,6 +40,7 @@ const active = ref(["0"]);
     :items="items"
     :ui="{
       item: 'text-gray-800 bg-gray-100 border-secondary last:border-b-0',
+      trigger: 'px-2 text-xl',
     }"
   >
     <template #content="{ item }">
