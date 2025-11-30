@@ -129,6 +129,7 @@ const MarkerConfig = {
         y-label="Rank"
         :x-num-ticks="24"
         :y-domain="[4, 1]"
+        :y-num-ticks="4"
         :categories="categories"
         :x-formatter="xFormatter"
         :y-formatter="yFormatter"
@@ -136,8 +137,8 @@ const MarkerConfig = {
         :curve-type="CurveType.Linear"
         :marker-config="MarkerConfig"
         :hide-y-axis="false"
+      
       />
-      <!-- :y-num-ticks="4" -->
     </div>
     <div class="flex flex-col items-center">
       <h3 class="text-xl font-semibold">Total Ranking</h3>
