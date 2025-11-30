@@ -12,12 +12,9 @@ parser.parse().then((data) => {
   items.value = data.map((item) => {
     return {
       ...item,
-      urlPhoto: item.urlPhoto
-        ? item.urlPhoto.replace("imgur.com/", "i.imgur.com/") + ".jpg"
-        : null,
+      urlPhoto: item.urlPhoto,
     };
   });
-  // .sort((a, b) => Number(b.scoreTotalP) - Number(a.scoreTotalP));
 });
 const UAvatar = resolveComponent("UAvatar");
 

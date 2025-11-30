@@ -54,6 +54,10 @@ const active = ref(["0"]);
           :key="ii"
           class="p-2 flex items-center gap-4 justify-between"
         >
+          <pre>
+        {{ each.urlPhoto }}
+        </pre
+          >
           <UAvatar
             :src="each.urlPhoto"
             alt="Benjamin Canac"
