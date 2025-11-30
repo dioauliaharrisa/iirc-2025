@@ -51,7 +51,14 @@ const schedule = [
     <div
       class="grid grid-rows-2 grid-cols-2 place-items-center bg-secondary h-[20vh] text-white font-bold text-xl"
     >
-      <UModal>
+      <UModal
+        title="Modal with close button"
+        :close="{
+          color: 'primary',
+          variant: 'outline',
+          class: 'rounded-full',
+        }"
+      >
         <div>Schedule</div>
         <template #content>
           <UCard>

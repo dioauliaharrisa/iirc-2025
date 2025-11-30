@@ -12,7 +12,7 @@
     <template #right>
       <UIcon
         name="i-material-symbols:home"
-        class="m-2 size-12 text-white"
+        class="size-12 text-white"
         @click="$router.push('/')"
       />
     </template>
