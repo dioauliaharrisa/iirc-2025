@@ -125,7 +125,7 @@ const MarkerConfig = {
     <div class="p-4 py-8">
       <LineChart
         :data="profile?.chartData"
-        :height="100"
+        :height="150"
         y-label="Rank"
         :x-num-ticks="24"
         :y-domain="[4, 1]"
