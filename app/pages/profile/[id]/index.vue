@@ -55,6 +55,7 @@ parser1.parse().then((data) => {
 parser2.parse().then((data) => {
   console.log("🦆 ~ data:", data);
   const foundData = data.find((row) => row.id === id) || null;
+  console.log("🦆 ~ foundData:", foundData);
 
   profile2.value = foundData;
 });
@@ -92,25 +93,27 @@ const MarkerConfig = {
         class="w-18 h-18"
       />
       <div>
-        <div class="text-xl">{{ profile?.name }}</div>
+        <div class="text-xl font-semibold">{{ profile?.name }}</div>
         <div>{{ profile?.country }}</div>
       </div>
     </div>
-    <LineChart
-      :data="profile?.chartData"
-      :height="100"
-      y-label="Rank"
-      :x-num-ticks="24"
-      :y-num-ticks="4"
-      :y-domain="[4, 1]"
-      :categories="categories"
-      :x-formatter="xFormatter"
-      :y-formatter="yFormatter"
-      :y-grid-line="true"
-      :curve-type="CurveType.Linear"
-      :marker-config="MarkerConfig"
-      :hide-y-axis="true"
-    />
+    <div class="p-4 py-8">
+      <LineChart
+        :data="profile?.chartData"
+        :height="100"
+        y-label="Rank"
+        :x-num-ticks="24"
+        :y-num-ticks="4"
+        :y-domain="[4, 1]"
+        :categories="categories"
+        :x-formatter="xFormatter"
+        :y-formatter="yFormatter"
+        :y-grid-line="true"
+        :curve-type="CurveType.Linear"
+        :marker-config="MarkerConfig"
+        :hide-y-axis="true"
+      />
+    </div>
     <div class="grid grid-cols-3 gap-2 p-2">
       <UCard
         v-for="(value, key) in profile2"
