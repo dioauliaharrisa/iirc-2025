@@ -41,7 +41,7 @@ const schedule = [
 <template>
   <div class="">
     <NuxtImg class="p-8 w-[50vh]" :src="'/Iirc no background.png'" />
-    <div class="text-center text-3xl font-semibold leading-tight">
+    <div class="p-4 text-center text-3xl font-semibold leading-tight">
       <p class="text-blue-900">
         Indonesia <span class="text-red-800">International</span>
       </p>
