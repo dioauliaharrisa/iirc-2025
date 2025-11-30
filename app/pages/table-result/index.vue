@@ -56,8 +56,8 @@ const active = ref(["0"]);
         >
           <!-- <pre>
         {{ each.urlPhoto }}
-        </pre -->
-          >
+        </pre> -->
+          
           <UAvatar
             :src="each.urlPhoto"
             alt="Benjamin Canac"
