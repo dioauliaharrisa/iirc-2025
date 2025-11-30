@@ -58,6 +58,22 @@ parser2.parse().then((data) => {
   profile2.value = filtered;
 });
 
+const excludeKeys = [
+  "id",
+  "firstTotal",
+  "secondTotal",
+  "thirdTotal",
+  "lastTotal",
+];
+
+const filteredProfile = computed(() =>
+  Object.fromEntries(
+    Object.entries(profile2.value || {}).filter(
+      ([key]) => !excludeKeys.includes(key)
+    )
+  )
+);
+
 const categories: Record<string, BulletLegendItemInterface> = {
   score: { name: "Score", color: "#22c55e" },
 };
@@ -133,18 +149,7 @@ const MarkerConfig = {
     </div>
     <div class="grid grid-cols-3 gap-2 p-2">
       <UCard
-        v-for="(value, key) in Object.fromEntries(
-          Object.entries(profile2).filter(
-            ([k]) =>
-              ![
-                'id',
-                'firstTotal',
-                'secondTotal',
-                'thirdTotal',
-                'lastTotal',
-              ].includes(k)
-          )
-        )"
+        v-for="(value, key) in filteredProfile"
         :key="key"
         class="text-center px-2 py-3"
         :ui="{
