@@ -13,7 +13,6 @@ parser.parse().then((data) => {
   items.value = data.map((row, index) => ({
     label: `Hanchan ${index + 1}`,
     content: Object.entries(row).map(([key, value]) => {
-      console.log("🦆 ~ value:", value);
       const parts = value.split(",").map((v) => v.trim());
 
       const grouped = [];

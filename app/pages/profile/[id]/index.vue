@@ -26,11 +26,9 @@ const route = useRoute();
 const id = route.params.id as string;
 
 const profile = ref<{ [key: string]: string } | null>(null);
-console.log("🦆 ~ profile:", profile);
 const profile2 = ref<{ [key: string]: string } | null>(null);
 
 parser1.parse().then((data) => {
-  console.log("🦆 ~ data:", data);
   const foundData = data.find((row) => row.id === id) || null;
 
   const chartData = Object.entries(foundData)
@@ -49,15 +47,14 @@ parser1.parse().then((data) => {
   };
 
   profile.value = merged;
-  console.log("🦆 ~ profile:", profile.value);
 });
 
 parser2.parse().then((data) => {
-  console.log("🦆 ~ data:", data);
   const foundData = data.find((row) => row.id === id) || null;
-  console.log("🦆 ~ foundData:", foundData);
-
-  profile2.value = foundData;
+  const filtered = Object.fromEntries(
+    Object.entries(foundData).filter(([key]) => key !== "id")
+  );
+  profile2.value = filtered;
 });
 
 const categories: Record<string, BulletLegendItemInterface> = {
