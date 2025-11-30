@@ -47,6 +47,7 @@ parser1.parse().then((data) => {
   };
 
   profile.value = merged;
+  console.log("🦆 ~ profile.value:", profile.value);
 });
 
 parser2.parse().then((data) => {
@@ -121,6 +122,14 @@ const MarkerConfig = {
         :marker-config="MarkerConfig"
         :hide-y-axis="true"
       />
+    </div>
+    <div class="flex flex-col items-center">
+      <h3 class="text-xl font-semibold">Total Ranking</h3>
+      <p class="text-lg font-semibold">
+        {{
+          `${profile2?.firstTotal}/${profile2?.secondTotal}/${profile2?.thirdTotal}/${profile2?.lastTotal}`
+        }}
+      </p>
     </div>
     <div class="grid grid-cols-3 gap-2 p-2">
       <UCard
