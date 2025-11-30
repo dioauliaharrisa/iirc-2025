@@ -1,5 +1,8 @@
 <script setup lang="ts">
 // import type { AccordionItem } from "@nuxt/ui";
+
+import photos from "../../../codeUrlPhoto.json";
+
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
 const options1 = {
@@ -23,6 +26,7 @@ const route = useRoute();
 const id = route.params.id as string;
 
 const profile = ref<{ [key: string]: string } | null>(null);
+console.log("🦆 ~ profile:", profile);
 const profile2 = ref<{ [key: string]: string } | null>(null);
 
 parser1.parse().then((data) => {
@@ -80,12 +84,18 @@ const MarkerConfig = {
 </script>
 
 <template>
-  <div class="bg-[#FFFEFA]">
-    <div>
-      <div>{{ profile?.name }}</div>
-      <div>{{ profile?.country }}</div>
+  <div class="bg-[#FFFEFA] p-4">
+    <div class="flex gap-4">
+      <UAvatar
+        :src="profile?.urlPicture"
+        alt="Benjamin Canac"
+        class="w-18 h-18"
+      />
+      <div>
+        <div class="text-xl">{{ profile?.name }}</div>
+        <div>{{ profile?.country }}</div>
+      </div>
     </div>
-    <div>{{ profile?.name }}</div>
     <LineChart
       :data="profile?.chartData"
       :height="100"

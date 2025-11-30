@@ -30,7 +30,6 @@ parser.parse().then((data) => {
       return { key, grouped };
     }),
   }));
-  console.log("🦆 ~ items:", items.value);
 });
 const active = ref(["0"]);
 </script>
