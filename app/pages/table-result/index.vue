@@ -34,40 +34,36 @@ const active = ref(["0"]);
 </script>
 
 <template>
-  <div>
-    <div>
-      <UAccordion
-        v-model="active"
-        type="multiple"
-        :items="items"
-        :ui="{
-          item: 'text-gray-800 bg-gray-100 border-secondary last:border-b-0',
-        }"
+  <UAccordion
+    v-model="active"
+    type="multiple"
+    :items="items"
+    :ui="{
+      item: 'text-gray-800 bg-gray-100 border-secondary last:border-b-0',
+    }"
+  >
+    <template #content="{ item }">
+      <div
+        v-for="(entry, i) in item.content"
+        :key="i"
+        class="flex flex-col justify-center border border-secondary"
       >
-        <template #content="{ item }">
-          <div
-            v-for="(entry, i) in item.content"
-            :key="i"
-            class="flex flex-col justify-center border border-secondary"
-          >
-            <div
-              v-for="(each, ii) in entry.grouped"
-              :key="ii"
-              class="p-2 flex items-center gap-4 justify-between"
-            >
-              <UAvatar
-                :src="each.urlPhoto"
-                alt="Benjamin Canac"
-                class="w-18 h-18"
-              />
-              <p @click="$router.push(`profile/${each.id}`)" class="flex-start">
-                {{ each.name }}
-              </p>
-              <p class="font-semibold">{{ each.score }}</p>
-            </div>
-          </div>
-        </template>
-      </UAccordion>
-    </div>
-  </div>
+        <div
+          v-for="(each, ii) in entry.grouped"
+          :key="ii"
+          class="p-2 flex items-center gap-4 justify-between"
+        >
+          <UAvatar
+            :src="each.urlPhoto"
+            alt="Benjamin Canac"
+            class="w-18 h-18"
+          />
+          <p @click="$router.push(`profile/${each.id}`)" class="flex-start">
+            {{ each.name }}
+          </p>
+          <p class="font-semibold">{{ each.score }}</p>
+        </div>
+      </div>
+    </template>
+  </UAccordion>
 </template>
