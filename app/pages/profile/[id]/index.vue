@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import type { AccordionItem } from "@nuxt/ui";
 
-import photos from "../../../codeUrlPhoto.json";
+// import photos from "../../../codeUrlPhoto.json";
 
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
