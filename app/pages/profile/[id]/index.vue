@@ -81,8 +81,10 @@ const MarkerConfig = {
 
 <template>
   <div class="bg-[#FFFEFA]">
-    <div>{{ profile?.name }}</div>
-    <div>{{ profile?.country }}</div>
+    <div>
+      <div>{{ profile?.name }}</div>
+      <div>{{ profile?.country }}</div>
+    </div>
     <div>{{ profile?.name }}</div>
     <LineChart
       :data="profile?.chartData"

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const images = [
-  { name: "clue logo high res", src: "/clue logo high res.png" },
-  // { name: "Logo RC", src: "/Logo RC.png" },
+  { name: "Logo RC", src: "/Logo RC.png" },
   { name: "Logo Kyou BHitam", src: "/Logo_Kyou_BHitam.png" },
   // { name: "Riichi id", src: "/Riichi id.jpeg" },
   { name: "Toko mahjong", src: "/Toko mahjong.jpg" },
@@ -98,7 +97,7 @@ const schedule = [
         src="/Riichi ID white background.png"
         class="w-24 h-24 object-contain"
       />
-      <NuxtImg src="/Logo RC.png" class="w-24 h-24 object-contain" />
+      <NuxtImg src="/clue logo high res.png" class="w-24 h-24 object-contain" />
     </div>
     <UMarquee
       pause-on-hover
