@@ -2,20 +2,32 @@
 // import type { AccordionItem } from "@nuxt/ui";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const options = { sheetName: "Display_Profile_P", useFormat: true };
-const parser = new PublicGoogleSheetsParser(
+const options1 = {
+  sheetName: "Display_Profile_P1",
+  useFormat: true,
+};
+const options2 = {
+  sheetName: "Display_Profile_P2",
+  useFormat: true,
+};
+const parser1 = new PublicGoogleSheetsParser(
   "1dL4cYaN3_5p7RGndKyIg14YcEwwcZSMedk5-QCJfMBE",
-  options
+  options1
+);
+const parser2 = new PublicGoogleSheetsParser(
+  "1dL4cYaN3_5p7RGndKyIg14YcEwwcZSMedk5-QCJfMBE",
+  options2
 );
 
 const route = useRoute();
 const id = route.params.id as string;
 
 const profile = ref<{ [key: string]: string } | null>(null);
+const profile2 = ref<{ [key: string]: string } | null>(null);
 
-parser.parse().then((data) => {
+parser1.parse().then((data) => {
+  console.log("🦆 ~ data:", data);
   const foundData = data.find((row) => row.id === id) || null;
-  console.log("🦆 ~ foundData:", data);
 
   const chartData = Object.entries(foundData)
     .filter(([key]) => !isNaN(Number(key)))
@@ -33,6 +45,14 @@ parser.parse().then((data) => {
   };
 
   profile.value = merged;
+  console.log("🦆 ~ profile:", profile.value);
+});
+
+parser2.parse().then((data) => {
+  console.log("🦆 ~ data:", data);
+  const foundData = data.find((row) => row.id === id) || null;
+
+  profile2.value = foundData;
 });
 
 const categories: Record<string, BulletLegendItemInterface> = {
@@ -79,7 +99,24 @@ const MarkerConfig = {
       :marker-config="MarkerConfig"
       :hide-y-axis="true"
     />
-    <!-- :hide-x-axis="true" -->
+    <div class="grid grid-cols-3 gap-2 p-2">
+      <UCard
+        v-for="(value, key) in profile2"
+        :key="key"
+        class="text-center px-2 py-3"
+        :ui="{
+          base: 'rounded-md',
+          body: { padding: '' }, // remove default padding
+        }"
+      >
+        <p class="text-[10px] text-gray-500 leading-tight capitalize">
+          {{ key }}
+        </p>
+        <p class="text-sm font-semibold leading-tight">
+          {{ value }}
+        </p>
+      </UCard>
+    </div>
   </div>
 </template>
 
