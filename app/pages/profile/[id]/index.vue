@@ -133,7 +133,18 @@ const MarkerConfig = {
     </div>
     <div class="grid grid-cols-3 gap-2 p-2">
       <UCard
-        v-for="(value, key) in profile2"
+        v-for="(value, key) in Object.fromEntries(
+          Object.entries(profile2).filter(
+            ([k]) =>
+              ![
+                'id',
+                'firstTotal',
+                'secondTotal',
+                'thirdTotal',
+                'lastTotal',
+              ].includes(k)
+          )
+        )"
         :key="key"
         class="text-center px-2 py-3"
         :ui="{
