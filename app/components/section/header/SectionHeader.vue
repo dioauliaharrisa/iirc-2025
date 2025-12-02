@@ -1,20 +1,17 @@
 <script setup lang="ts"></script>
 
 <template>
-  <UHeader
-    :ui="{
-      root: 'mt-auto bg-primary sticky bottom-0 z-50 ',
-      toggle: 'hidden',
-    }"
+  <header
+    class="mt-auto bg-primary fixed bottom-0 left-0 w-full z-50 flex items-center justify-between p-0 px-4 "
   >
-    <template #left><div>666</div></template>
+    <div>666</div>
 
-    <template #right>
+    <div>
       <UIcon
         name="i-material-symbols:home"
-        class="size-12 text-white"
+        class="size-10 text-white"
         @click="$router.push('/')"
       />
-    </template>
-  </UHeader>
+    </div>
+  </header>
 </template>
