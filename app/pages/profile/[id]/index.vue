@@ -137,7 +137,6 @@ const MarkerConfig = {
         :curve-type="CurveType.Linear"
         :marker-config="MarkerConfig"
         :hide-y-axis="false"
-      
       />
     </div>
     <div class="flex flex-col items-center">

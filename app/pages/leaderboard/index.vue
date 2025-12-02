@@ -66,8 +66,11 @@ const columns = [
                 row.original.name
               ),
               h(NuxtImg, {
-                src: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg",
-                class: "w-6 h-6 object-cover rounded-md", // adjust size
+                src:
+                  row.original?.country === "TW"
+                    ? "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg"
+                    : `https://purecatamphetamine.github.io/country-flag-icons/3x2/${row.original?.country}.svg`,
+                class: "w-6 h-6 object-cover rounded-md",
                 alt: row.original.name,
                 format: "webp",
               }),

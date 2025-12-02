@@ -61,7 +61,9 @@ const schedule = [
       >
         <div>Schedule</div>
         <template #body>
-          <UCard class="max-w-2xl mx-auto text-sm text-white h-[50vh] overflow-y-auto">
+          <UCard
+            class="max-w-2xl mx-auto text-sm text-white h-[50vh] overflow-y-auto"
+          >
             <div v-for="(day, d) in schedule" :key="d" class="mb-6">
               <h2 class="text-lg font-bold text-center bg-primary py-2">
                 {{ day.day }}
@@ -93,7 +95,7 @@ const schedule = [
       <div class="cursor-pointer" @click="$router.push('table-result')">
         Table Results
       </div>
-      <div class="cursor-pointer" @click="$router.push('table-result')">
+      <div class="cursor-pointer" @click="$router.push('leaderboard-top-8')">
         Top 8 Leaderboard
       </div>
     </div>
