@@ -23,7 +23,7 @@ const router = useRouter();
 const columns = [
   {
     accessorKey: "urlPhoto",
-    header: "Photo",
+    header: "Name",
     cell: ({ row }) => {
       console.log("🦆 ~ row:", row);
       const isSpecialRow = row.index === 8;
@@ -70,7 +70,7 @@ const columns = [
                   row.original?.country === "TW"
                     ? "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg"
                     : `https://purecatamphetamine.github.io/country-flag-icons/3x2/${row.original?.country}.svg`,
-                class: "w-6 h-6 object-cover rounded-md",
+                class: "w-8 h-6 object-cover border border-gray-200",
                 alt: row.original.name,
                 format: "webp",
               }),
