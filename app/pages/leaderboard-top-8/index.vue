@@ -54,7 +54,7 @@ const columns = [
         ]
       );
       if (isSpecialRow) {
-        return h("div", { class: "flex flex-col gap-2" }, [
+        return h("div", { class: "flex flex-col gap-2 bg-primary" }, [
           h(
             "div",
             {
