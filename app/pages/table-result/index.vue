@@ -49,15 +49,16 @@ const active = ref(["0"]);
         :key="i"
         class="flex flex-col justify-center border border-secondary"
       >
+        <div class="bg-secondary">
+          <h5 class="p-2 text-lg font-semibold text-white">
+            Table {{ i + 1 }}
+          </h5>
+        </div>
         <div
           v-for="(each, ii) in entry.grouped"
           :key="ii"
           class="p-2 flex items-center gap-4 justify-between"
         >
-          <!-- <pre>
-        {{ each.urlPhoto }}
-        </pre> -->
-          
           <UAvatar
             :src="each.urlPhoto"
             alt="Benjamin Canac"
