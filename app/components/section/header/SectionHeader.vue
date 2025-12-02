@@ -1,8 +1,6 @@
-<script setup lang="ts"></script>
-
 <template>
   <header
-    class="mt-auto bg-primary fixed bottom-0 left-0 w-full z-50 flex items-center justify-between px-4 pt-1.5 "
+    class="mt-auto bg-primary fixed bottom-0 left-0 w-full z-50 flex items-center justify-between px-4 pt-1.5"
   >
     <div>666</div>
 

@@ -10,6 +10,7 @@ const items = ref<{ [key: string]: string }[]>([]);
 
 parser.parse().then((data) => {
   items.value = data;
+  console.log("🦆 ~ items.value:", items.value);
 });
 const UAvatar = resolveComponent("UAvatar");
 
@@ -20,7 +21,10 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Name",
     cell: ({ row }) => {
-      return h(
+      console.log("🦆 ~ row:", row.original);
+      const isSpecialRow = row.original.rank === "0";
+
+      const playerEntry = h(
         "div",
         {
           class: "flex items-center gap-3",
@@ -49,6 +53,27 @@ const columns = [
           ]),
         ]
       );
+      if (isSpecialRow) {
+        return h("div", { class: "flex flex-col gap-2" }, [
+          h(
+            "div",
+            {
+              class: "flex items-center gap-3 h-16",
+            },
+            [
+              h("div", undefined, [
+                h(
+                  "p",
+                  { class: "font-medium text-highlighted" },
+                  row.original.name
+                ),
+              ]),
+            ]
+          ),
+        ]);
+      } else {
+        return playerEntry;
+      }
     },
   },
 
