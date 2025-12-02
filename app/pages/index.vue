@@ -52,37 +52,35 @@ const schedule = [
       class="grid grid-rows-2 grid-cols-2 place-items-center bg-secondary h-[20vh] text-white font-bold text-xl"
     >
       <UModal
-        title="Modal with close button"
+        scrollable
+        title="Schedule"
         :close="{
           color: 'primary',
           variant: 'outline',
-          class: 'rounded-full',
         }"
       >
         <div>Schedule</div>
-        <template #content>
-          <UCard>
-            <div class="max-w-2xl mx-auto text-sm text-white">
-              <div v-for="(day, d) in schedule" :key="d" class="mb-6">
-                <h2 class="text-lg font-bold text-center bg-primary py-2">
-                  {{ day.day }}
-                </h2>
-                <div
-                  class="grid grid-cols-2 gap-x-6 gap-y-2 bg-gray-100 p-4 text-gray-900"
-                >
-                  <template v-for="(item, i) in day.items" :key="i">
-                    <div>{{ item[0] }}</div>
-                    <div>
-                      <span
-                        v-html="
-                          item[1].includes('Hanchan')
-                            ? item[1]
-                            : `<b>${item[1]}</b>`
-                        "
-                      ></span>
-                    </div>
-                  </template>
-                </div>
+        <template #body>
+          <UCard class="max-w-2xl mx-auto text-sm text-white h-[50vh] overflow-y-auto">
+            <div v-for="(day, d) in schedule" :key="d" class="mb-6">
+              <h2 class="text-lg font-bold text-center bg-primary py-2">
+                {{ day.day }}
+              </h2>
+              <div
+                class="grid grid-cols-2 gap-x-6 gap-y-2 bg-gray-100 p-4 text-gray-900"
+              >
+                <template v-for="(item, i) in day.items" :key="i">
+                  <div>{{ item[0] }}</div>
+                  <div>
+                    <span
+                      v-html="
+                        item[1].includes('Hanchan')
+                          ? item[1]
+                          : `<b>${item[1]}</b>`
+                      "
+                    ></span>
+                  </div>
+                </template>
               </div>
             </div>
           </UCard>
