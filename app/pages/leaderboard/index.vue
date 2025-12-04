@@ -36,7 +36,11 @@ const columns = [
     header: "Rank",
     cell: ({ row }) => {
       return h("div", {}, [
-        h("span", { class: "text-lg font-medium" }, row.original.no),
+        h(
+          "span",
+          { class: "text-lg font-medium flex justify-center" },
+          row.original.no
+        ),
         // h("span", { class: "ml-2 text-lg" }, `${medal(row.original?.rank)}`),
       ]);
     },
@@ -105,6 +109,16 @@ const columns = [
   {
     accessorKey: "scoreTotalP",
     header: "Score",
+    cell: ({ row }) => {
+      return h("div", {}, [
+        h(
+          "span",
+          { class: "text-lg font-medium flex justify-center" },
+          row.original.scoreTotalP
+        ),
+        // h("span", { class: "ml-2 text-lg" }, `${medal(row.original?.rank)}`),
+      ]);
+    },
   },
 ];
 </script>
