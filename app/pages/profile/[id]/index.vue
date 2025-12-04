@@ -46,8 +46,9 @@ parser1.parse().then((data) => {
   );
 
   const chartData2 = Object.keys(totals).map((key) => {
+    console.log("🦆 ~ totals:", totals);
     const [a, b] = totals[key].split(",").map(Number);
-    return { label: key, a, b };
+    return { date: key, a, b };
   });
 
   const merged = {
@@ -165,14 +166,16 @@ const formatKey = (key: string) =>
         v-for="(value, key) in filteredProfile"
         :key="key"
         :ui="{
-          base: 'rounded-md',
-          body: 'py-4 sm:p-4', // remove default padding
+          root: 'shadow-sm',
+          body: 'py-4 sm:p-4 ', // remove default padding
         }"
       >
-        <div class="flex flex-col justify-evenly items-center h-16 text-center">
-          <p class="text-[12px] text-gray-500 leading-tight capitalize">
+        <div class="flex flex-col justify-evenly items-center h-24 text-center">
+          <span
+            class="text-[12px] text-gray-500 leading-tight capitalize inline-block "
+          >
             {{ formatKey(key) }}
-          </p>
+          </span>
           <p class="text-lg font-semibold leading-tight">
             {{ value }}
           </p>
