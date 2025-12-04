@@ -54,7 +54,7 @@ const generateTableName = (i, label) => {
       :items="items"
       :ui="{
         item: 'text-gray-800 bg-gray-100 border-secondary last:border-b-0',
-        trigger: 'px-2 text-xl bg-[#99484c] text-white',
+        trigger: 'px-2 text-xl bg-secondary text-white',
       }"
     >
       <template #content="{ item }">
@@ -63,7 +63,7 @@ const generateTableName = (i, label) => {
           :key="i"
           class="flex flex-col justify-center border border-secondary"
         >
-          <div class="bg-secondary">
+          <div class="bg-[#99484c]">
             <h5 class="p-2 text-lg font-semibold text-white">
               {{ generateTableName(i, item.label) }}
             </h5>
