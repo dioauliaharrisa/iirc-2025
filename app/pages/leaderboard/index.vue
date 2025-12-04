@@ -113,7 +113,7 @@ const columns = [
       return h("div", {}, [
         h(
           "span",
-          { class: "text-lg font-medium flex justify-center" },
+          { class: "text-md font-medium flex justify-center" },
           row.original.scoreTotalP
         ),
         // h("span", { class: "ml-2 text-lg" }, `${medal(row.original?.rank)}`),
