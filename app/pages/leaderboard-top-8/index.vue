@@ -10,7 +10,6 @@ const items = ref<{ [key: string]: string }[]>([]);
 
 parser.parse().then((data) => {
   items.value = data;
-  console.log("🦆 ~ items.value:", items.value);
 });
 const UAvatar = resolveComponent("UAvatar");
 
@@ -21,7 +20,6 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Name",
     cell: ({ row }) => {
-      console.log("🦆 ~ row:", row.original);
       const isSpecialRow = row.original.rank === "0";
 
       const playerEntry = h(
@@ -42,10 +40,7 @@ const columns = [
               row.original.name
             ),
             h(NuxtImg, {
-              src:
-                row.original?.country === "TW"
-                  ? "https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg"
-                  : `https://purecatamphetamine.github.io/country-flag-icons/3x2/${row.original?.country}.svg`,
+              src: `https://purecatamphetamine.github.io/country-flag-icons/3x2/${row.original?.country}.svg`,
               class: "w-8 h-6 object-cover border border-gray-200",
               alt: row.original.name,
               format: "webp",
@@ -85,5 +80,8 @@ const columns = [
 </script>
 
 <template>
-  <UTable :data="items || []" :columns="columns"> </UTable>
+  <div>
+    <UTable :data="items || []" :columns="columns"> </UTable>
+    <UBanner class="h-[50px]" title="End of the table" />
+  </div>
 </template>
