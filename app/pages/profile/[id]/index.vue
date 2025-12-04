@@ -75,6 +75,7 @@ const excludeKeys = [
   "secondTotal",
   "thirdTotal",
   "lastTotal",
+  "pointLowest",
 ];
 
 const filteredProfile = computed(() =>
@@ -163,18 +164,19 @@ const formatKey = (key: string) =>
       <UCard
         v-for="(value, key) in filteredProfile"
         :key="key"
-        class="text-center px-2 py-3"
         :ui="{
           base: 'rounded-md',
-          body: { padding: '' }, // remove default padding
+          body: 'py-4 sm:p-4', // remove default padding
         }"
       >
-        <p class="text-[10px] text-gray-500 leading-tight capitalize">
-          {{ formatKey(key) }}
-        </p>
-        <p class="text-sm font-semibold leading-tight">
-          {{ value }}
-        </p>
+        <div class="flex flex-col justify-evenly items-center h-16 text-center">
+          <p class="text-[12px] text-gray-500 leading-tight capitalize">
+            {{ formatKey(key) }}
+          </p>
+          <p class="text-lg font-semibold leading-tight">
+            {{ value }}
+          </p>
+        </div>
       </UCard>
     </div>
   </div>
