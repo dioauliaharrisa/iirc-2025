@@ -76,7 +76,7 @@ const excludeKeys = [
   "secondTotal",
   "thirdTotal",
   "lastTotal",
-  "pointLowest",
+  "lowestPoint",
 ];
 
 const filteredProfile = computed(() =>
@@ -128,7 +128,6 @@ const formatKey = (key: string) =>
       </div>
       <div>
         <div class="text-xl font-semibold">{{ profile?.name }}</div>
-        <!-- <div>{{ profile?.country }}</div> -->
         <NuxtImg
           width="30"
           :alt="profile?.name"
@@ -172,7 +171,7 @@ const formatKey = (key: string) =>
       >
         <div class="flex flex-col justify-evenly items-center h-24 text-center">
           <span
-            class="text-[12px] text-gray-500 leading-tight capitalize inline-block "
+            class="text-[12px] text-gray-500 leading-tight capitalize inline-block"
           >
             {{ formatKey(key) }}
           </span>
