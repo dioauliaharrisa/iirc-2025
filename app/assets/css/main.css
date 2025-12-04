@@ -10,19 +10,3 @@
   --ui-primary: #204059;
   --ui-secondary: #801b1f;
 }
-
-@theme {
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-
-  --animate-marquee: marquee 1s linear infinite alternate;
-}
-.animate-marquee {
-  animation: var(--animate-marquee);
-}

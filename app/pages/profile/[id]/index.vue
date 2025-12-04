@@ -38,6 +38,7 @@ parser1.parse().then((data) => {
       return {
         date: `${index + 1}`,
         score: Number(rank),
+        rank: Number(score),
       };
     });
 
@@ -45,10 +46,9 @@ parser1.parse().then((data) => {
     Object.entries(foundData).filter(([k]) => k.startsWith("tot_"))
   );
 
-  const chartData2 = Object.keys(totals).map((key) => {
-    console.log("🦆 ~ totals:", totals);
-    const [a, b] = totals[key].split(",").map(Number);
-    return { date: key, a, b };
+  const chartData2 = Object.keys(totals).map((key, i) => {
+    const split = totals[key].split(", ");
+    return { date: String(i + 1), score: Number(split[1]) };
   });
 
   const merged = {
@@ -58,7 +58,7 @@ parser1.parse().then((data) => {
   };
 
   profile.value = merged;
-  console.log("🦆 ~ profile.value:", profile.value);
+  console.log("🦆 ~ profile.value:", profile.value.chartData);
 });
 
 parser2.parse().then((data) => {
@@ -67,7 +67,6 @@ parser2.parse().then((data) => {
     Object.entries(foundData).filter(([key]) => key !== "id")
   );
   profile2.value = filtered;
-  console.log("🦆 ~ profile2.value:", profile2.value);
 });
 
 const excludeKeys = [
@@ -88,7 +87,8 @@ const filteredProfile = computed(() =>
 );
 
 const categories: Record<string, BulletLegendItemInterface> = {
-  score: { name: "Score", color: "#22c55e" },
+  score: { name: "Score", color: "#801b1f" },
+  // rank: { name: "Rank", color: "#3b82f6" },
 };
 const xFormatter = (tick: number, _i?: number, _ticks?: number[]): string => {
   return String(profile?.value?.chartData?.[tick]?.date ?? "");
@@ -114,10 +114,12 @@ const formatKey = (key: string) =>
   key
     .replace(/([A-Z])/g, " $1") // insert spaces
     .replace(/^./, (c) => c.toUpperCase()); // capitalize first letter
+
+const carouselRef = ref(false);
 </script>
 
 <template>
-  <div class="bg-[#FFFEFA] p-4">
+  <div class="bg-[#FFFEFA] p-4 gap-4">
     <div class="flex gap-4">
       <div>
         <UAvatar
@@ -139,6 +141,7 @@ const formatKey = (key: string) =>
       <LineChart
         :data="profile?.chartData"
         :height="150"
+        x-label="Hanchan"
         y-label="Rank"
         :x-num-ticks="24"
         :y-domain="[4, 1]"
@@ -150,9 +153,34 @@ const formatKey = (key: string) =>
         :curve-type="CurveType.Linear"
         :marker-config="MarkerConfig"
         :hide-y-axis="false"
-      />
+        hide-legend
+      >
+        <template #tooltip="{ values }">
+          <div>Score: {{ String(values?.rank) }}</div>
+        </template>
+      </LineChart>
     </div>
-    <div class="flex flex-col items-center">
+    <div class="p-4 py-8">
+      <!-- :y-num-ticks="4" -->
+      <LineChart
+        :data="profile?.chartData2"
+        :height="250"
+        x-label="Hanchan"
+        y-label="Total Point"
+        :x-num-ticks="12"
+        :y-num-ticks="7"
+        :categories="categories"
+        :x-formatter="xFormatter"
+        :y-formatter="yFormatter"
+        :y-domain="[-150, 150]"
+        :y-grid-line="true"
+        :curve-type="CurveType.Linear"
+        :marker-config="MarkerConfig"
+        :hide-y-axis="false"
+      >
+      </LineChart>
+    </div>
+    <div class="flex flex-col items-center p-4">
       <h3 class="text-xl font-semibold">Total Ranking</h3>
       <p class="text-lg font-semibold">
         {{
@@ -160,7 +188,7 @@ const formatKey = (key: string) =>
         }}
       </p>
     </div>
-    <div class="grid grid-cols-3 gap-2 p-2">
+    <div class="grid grid-cols-3 gap-2 p-0">
       <UCard
         v-for="(value, key) in filteredProfile"
         :key="key"
@@ -169,7 +197,7 @@ const formatKey = (key: string) =>
           body: 'py-4 sm:p-4 ', // remove default padding
         }"
       >
-        <div class="flex flex-col justify-evenly items-center h-24 text-center">
+        <div class="flex flex-col justify-evenly items-center h-20 text-center">
           <span
             class="text-[12px] text-gray-500 leading-tight capitalize inline-block"
           >
