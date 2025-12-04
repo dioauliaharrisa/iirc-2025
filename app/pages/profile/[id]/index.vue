@@ -66,6 +66,7 @@ parser2.parse().then((data) => {
     Object.entries(foundData).filter(([key]) => key !== "id")
   );
   profile2.value = filtered;
+  console.log("🦆 ~ profile2.value:", profile2.value);
 });
 
 const excludeKeys = [
@@ -106,6 +107,11 @@ const MarkerConfig = {
   strokeColor: "#22c55e",
   strokeWidth: 20,
 };
+
+const formatKey = (key: string) =>
+  key
+    .replace(/([A-Z])/g, " $1") // insert spaces
+    .replace(/^./, (c) => c.toUpperCase()); // capitalize first letter
 </script>
 
 <template>
@@ -164,7 +170,7 @@ const MarkerConfig = {
         }"
       >
         <p class="text-[10px] text-gray-500 leading-tight capitalize">
-          {{ key }}
+          {{ formatKey(key) }}
         </p>
         <p class="text-sm font-semibold leading-tight">
           {{ value }}
