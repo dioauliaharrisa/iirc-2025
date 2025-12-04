@@ -41,9 +41,19 @@ parser1.parse().then((data) => {
       };
     });
 
+  const totals = Object.fromEntries(
+    Object.entries(foundData).filter(([k]) => k.startsWith("tot_"))
+  );
+
+  const chartData2 = Object.keys(totals).map((key) => {
+    const [a, b] = totals[key].split(",").map(Number);
+    return { label: key, a, b };
+  });
+
   const merged = {
     ...foundData,
     chartData,
+    chartData2,
   };
 
   profile.value = merged;
