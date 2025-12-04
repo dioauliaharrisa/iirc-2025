@@ -9,7 +9,7 @@ const parser = new PublicGoogleSheetsParser(
 const items = ref<{ [key: string]: string }[]>([]);
 
 parser.parse().then((data) => {
-  items.value = data.map((item, i) => {
+  items.value = data.map((item) => {
     return {
       ...item,
       urlPhoto: item.urlPhoto,

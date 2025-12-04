@@ -102,19 +102,19 @@ interface MarkerConfig {
   strokeColor?: string;
 }
 const MarkerConfig = {
-  type: "circle",
-  size: 18,
-  color: "#22c55e",
-  strokeColor: "#22c55e",
-  strokeWidth: 20,
+  rank: {
+    type: "circle",
+    size: 18,
+    color: "#22c55e",
+    strokeColor: "#22c55e",
+    strokeWidth: 20,
+  },
 };
 
 const formatKey = (key: string) =>
   key
     .replace(/([A-Z])/g, " $1") // insert spaces
     .replace(/^./, (c) => c.toUpperCase()); // capitalize first letter
-
-const carouselRef = ref(false);
 </script>
 
 <template>
@@ -142,12 +142,14 @@ const carouselRef = ref(false);
             :data="profile?.chartData"
             :height="250"
             x-label="Hanchan"
-            y-label="Rank"
             :x-num-ticks="24"
-            :y-domain="[4, 1]"
-            :y-num-ticks="4"
             :categories="categories"
             :x-formatter="xFormatter"
+            y-label="Rank"
+            :y-domain="[4, 1]"
+            :y-tick-line="true"
+            :y-num-ticks="4"
+            :y-domain-line="true"
             :y-formatter="yFormatter"
             :y-grid-line="true"
             :curve-type="CurveType.Linear"
@@ -178,7 +180,6 @@ const carouselRef = ref(false);
             :y-domain="[-150, 150]"
             :y-grid-line="true"
             :curve-type="CurveType.Linear"
-            :marker-config="MarkerConfig"
             :hide-y-axis="false"
             hide-legend
           >
@@ -222,7 +223,7 @@ const carouselRef = ref(false);
 </template>
 
 <style scoped>
-.markers:deep(*[stroke="#22c55e"]) {
+.markers:deep(*[stroke="#801b1f"]) {
   marker: url("#circle-marker-score");
 }
 </style>
