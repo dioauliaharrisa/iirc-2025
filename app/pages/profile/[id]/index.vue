@@ -118,16 +118,14 @@ const carouselRef = ref(false);
 </script>
 
 <template>
-  <div class="bg-[#FFFEFA] p-4 flex flex-col gap-4">
-    <div class="flex gap-4">
-      <div>
-        <UAvatar
-          :src="profile?.urlPicture"
-          alt="Benjamin Canac"
-          class="w-18 h-18"
-        />
-      </div>
-      <div>
+  <div class="flex flex-col gap-4">
+    <div class="flex gap-4 p-4 bg-[#99484c] text-white items-center">
+      <UAvatar
+        :src="profile?.urlPicture"
+        alt="Benjamin Canac"
+        class="w-18 h-18"
+      />
+      <div class="flex flex-col gap-2">
         <div class="text-xl font-semibold">{{ profile?.name }}</div>
         <NuxtImg
           width="30"
@@ -188,7 +186,7 @@ const carouselRef = ref(false);
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center p-4">
+    <div class="flex flex-col items-center bg-[#99484c] p-4 text-white">
       <h3 class="text-xl font-semibold">Total Ranking</h3>
       <p class="text-lg font-semibold">
         {{
@@ -196,22 +194,24 @@ const carouselRef = ref(false);
         }}
       </p>
     </div>
-    <div class="grid grid-cols-3 gap-2 p-0">
+    <div class="grid grid-cols-3 gap-2 p-4">
       <UCard
         v-for="(value, key) in filteredProfile"
         :key="key"
         :ui="{
-          root: 'shadow-sm',
+          root: 'shadow-sm bg-primary',
           body: 'py-4 sm:p-4 ', // remove default padding
         }"
       >
-        <div class="flex flex-col justify-between items-center h-20 text-center">
+        <div
+          class="flex flex-col justify-between items-center h-20 text-center"
+        >
           <span
-            class="text-[12px] text-gray-500 leading-tight capitalize inline-block"
+            class="text-[12px] leading-tight capitalize inline-block text-gray-200"
           >
             {{ formatKey(key) }}
           </span>
-          <p class="text-lg font-semibold leading-tight pb-2">
+          <p class="text-lg font-semibold leading-tight pb-2 text-white">
             {{ value }}
           </p>
         </div>
