@@ -15,17 +15,39 @@ const UAvatar = resolveComponent("UAvatar");
 
 const router = useRouter();
 
+const medal = (rank) => {
+  const r = Number(rank);
+
+  if (r >= 1 && r <= 3) return "🏆"; // Gold
+  if (r >= 4 && r <= 7) return "🥇"; // Gold
+  if (r >= 8 && r <= 14) return "🥈"; // Gold
+
+  return "";
+};
+
 const columns = [
+  {
+    accessorKey: "rank",
+    header: "Rank",
+    cell: ({ row }) => {
+      if (row.original.rank === "0") return;
+      return h("div", {}, [
+        h("span", { class: "text-lg font-medium" }, row.original.rank),
+        // h("span", { class: "ml-2 text-lg" }, `${medal(row.original?.rank)}`),
+      ]);
+    },
+  },
   {
     accessorKey: "urlPhoto",
     header: "Name",
     cell: ({ row }) => {
+      console.log("🦆 ~ row:", row.original.rank);
       const isSpecialRow = row.original.rank === "0";
 
       const playerEntry = h(
         "div",
         {
-          class: "flex items-center gap-3",
+          class: "flex items-center gap-3 max-w-96",
           onClick: () => router.push(`/profile/${row.original.playerID}`),
         },
         [
@@ -33,12 +55,19 @@ const columns = [
             src: row.original.urlPhoto,
             size: "3xl",
           }),
-          h("div", undefined, [
-            h(
-              "p",
-              { class: "font-medium text-highlighted" },
-              row.original.name
-            ),
+          h("div", { class: "flex flex-col" }, [
+            h("div", { class: "flex items-center gap-2" }, [
+              h(
+                "p",
+                { class: "font-medium text-highlighted whitespace-normal" },
+                row.original.name
+              ),
+              // h(
+              //   "p",
+              //   { class: "font-medium text-highlighted" },
+              //   `${medal(row.original?.rank)}`
+              // ),
+            ]),
             h(NuxtImg, {
               src: `https://purecatamphetamine.github.io/country-flag-icons/3x2/${row.original?.country}.svg`,
               class: "w-8 h-6 object-cover border border-gray-200",
@@ -48,8 +77,9 @@ const columns = [
           ]),
         ]
       );
+
       if (isSpecialRow) {
-        return h("div", { class: "flex flex-col gap-2 bg-primary" }, [
+        return h("div", { class: "flex flex-col gap-2" }, [
           h(
             "div",
             {

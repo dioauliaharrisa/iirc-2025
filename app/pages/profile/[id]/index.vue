@@ -160,7 +160,7 @@ const carouselRef = ref(false);
         </template>
       </LineChart>
     </div>
-    <div class="p-4 py-8">
+    <div class="">
       <!-- :y-num-ticks="4" -->
       <LineChart
         :data="profile?.chartData2"
