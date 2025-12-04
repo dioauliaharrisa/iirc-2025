@@ -31,45 +31,60 @@ parser.parse().then((data) => {
   }));
 });
 const active = ref(["0"]);
+
+const generateTableName = (i, label) => {
+  console.log("🦆 ~ generateTableName ~ label:", label);
+  if (i === 0 && (label === "Hanchan 9" || label === "Hanchan 10"))
+    return "Semi Final Table 1";
+  if (i === 1 && (label === "Hanchan 9" || label === "Hanchan 10"))
+    return "Semi Final Table 2";
+  if (i === 0 && (label === "Hanchan 11" || label === "Hanchan 12"))
+    return "Final Table 1";
+  if (i === 1 && (label === "Hanchan 11" || label === "Hanchan 12"))
+    return "Final Table 2";
+  return `Table ${i + 1}`;
+};
 </script>
 
 <template>
-  <UAccordion
-    v-model="active"
-    type="multiple"
-    :items="items"
-    :ui="{
-      item: 'text-gray-800 bg-gray-100 border-secondary last:border-b-0',
-      trigger: 'px-2 text-xl',
-    }"
-  >
-    <template #content="{ item }">
-      <div
-        v-for="(entry, i) in item.content"
-        :key="i"
-        class="flex flex-col justify-center border border-secondary"
-      >
-        <div class="bg-secondary">
-          <h5 class="p-2 text-lg font-semibold text-white">
-            Table {{ i + 1 }}
-          </h5>
-        </div>
+  <div class="h-dvh bg-primary">
+    <UAccordion
+      v-model="active"
+      type="multiple"
+      :items="items"
+      :ui="{
+        item: 'text-gray-800 bg-gray-100 border-secondary last:border-b-0',
+        trigger: 'px-2 text-xl bg-[#99484c] text-white',
+      }"
+    >
+      <template #content="{ item }">
         <div
-          v-for="(each, ii) in entry.grouped"
-          :key="ii"
-          class="p-2 flex items-center gap-4 justify-between"
+          v-for="(entry, i) in item.content"
+          :key="i"
+          class="flex flex-col justify-center border border-secondary"
         >
-          <UAvatar
-            :src="each.urlPhoto"
-            alt="Benjamin Canac"
-            class="w-18 h-18"
-          />
-          <p @click="$router.push(`profile/${each.id}`)" class="flex-start">
-            {{ each.name }}
-          </p>
-          <p class="font-semibold">{{ each.score }}</p>
+          <div class="bg-secondary">
+            <h5 class="p-2 text-lg font-semibold text-white">
+              {{ generateTableName(i, item.label) }}
+            </h5>
+          </div>
+          <div
+            v-for="(each, ii) in entry.grouped"
+            :key="ii"
+            class="p-2 flex items-center gap-4 justify-between"
+          >
+            <UAvatar
+              :src="each.urlPhoto"
+              alt="Benjamin Canac"
+              class="w-18 h-18"
+            />
+            <p @click="$router.push(`profile/${each.id}`)" class="flex-start">
+              {{ each.name }}
+            </p>
+            <p class="font-semibold">{{ each.score }}</p>
+          </div>
         </div>
-      </div>
-    </template>
-  </UAccordion>
+      </template>
+    </UAccordion>
+  </div>
 </template>
