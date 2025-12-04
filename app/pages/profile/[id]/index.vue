@@ -124,11 +124,7 @@ const MarkerConfig = {
         <NuxtImg
           width="30"
           :alt="profile?.name"
-          :src="
-            profile?.country === 'TW'
-              ? 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Chinese_Taipei_for_Olympic_Games.svg'
-              : `https://purecatamphetamine.github.io/country-flag-icons/3x2/${profile?.country}.svg`
-          "
+          :src="`https://purecatamphetamine.github.io/country-flag-icons/3x2/${profile?.country}.svg`"
         />
       </div>
     </div>
