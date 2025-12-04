@@ -45,7 +45,6 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Name",
     cell: ({ row }) => {
-      console.log("🦆 ~ row:", row.original);
       const isSpecialRow = row.index === 8;
 
       if (isSpecialRow) {

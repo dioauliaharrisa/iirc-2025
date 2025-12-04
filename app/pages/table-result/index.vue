@@ -33,7 +33,6 @@ parser.parse().then((data) => {
 const active = ref(["0"]);
 
 const generateTableName = (i, label) => {
-  console.log("🦆 ~ generateTableName ~ label:", label);
   if (i === 0 && (label === "Hanchan 9" || label === "Hanchan 10"))
     return "Semi Final Table 1";
   if (i === 1 && (label === "Hanchan 9" || label === "Hanchan 10"))

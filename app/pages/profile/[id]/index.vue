@@ -58,7 +58,6 @@ parser1.parse().then((data) => {
   };
 
   profile.value = merged;
-  console.log("🦆 ~ profile.value:", profile.value.chartData);
 });
 
 parser2.parse().then((data) => {

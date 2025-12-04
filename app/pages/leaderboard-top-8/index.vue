@@ -41,7 +41,6 @@ const columns = [
     accessorKey: "urlPhoto",
     header: "Name",
     cell: ({ row }) => {
-      console.log("🦆 ~ row:", row.original.rank);
       const isSpecialRow = row.original.rank === "0";
 
       const playerEntry = h(
