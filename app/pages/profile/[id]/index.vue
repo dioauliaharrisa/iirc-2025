@@ -118,7 +118,7 @@ const carouselRef = ref(false);
 </script>
 
 <template>
-  <div class="bg-[#FFFEFA] p-4 gap-4">
+  <div class="bg-[#FFFEFA] p-4 flex flex-col gap-4">
     <div class="flex gap-4">
       <div>
         <UAvatar
@@ -136,48 +136,57 @@ const carouselRef = ref(false);
         />
       </div>
     </div>
-    <div class="p-4 py-8">
-      <LineChart
-        :data="profile?.chartData"
-        :height="150"
-        x-label="Hanchan"
-        y-label="Rank"
-        :x-num-ticks="24"
-        :y-domain="[4, 1]"
-        :y-num-ticks="4"
-        :categories="categories"
-        :x-formatter="xFormatter"
-        :y-formatter="yFormatter"
-        :y-grid-line="true"
-        :curve-type="CurveType.Linear"
-        :marker-config="MarkerConfig"
-        :hide-y-axis="false"
-        hide-legend
-      >
-        <template #tooltip="{ values }">
-          <div>Score: {{ String(values?.rank) }}</div>
-        </template>
-      </LineChart>
-    </div>
-    <div class="">
-      <!-- :y-num-ticks="4" -->
-      <LineChart
-        :data="profile?.chartData2"
-        :height="250"
-        x-label="Hanchan"
-        y-label="Total Point"
-        :x-num-ticks="12"
-        :y-num-ticks="7"
-        :categories="categories"
-        :x-formatter="xFormatter"
-        :y-formatter="yFormatter"
-        :y-domain="[-150, 150]"
-        :y-grid-line="true"
-        :curve-type="CurveType.Linear"
-        :marker-config="MarkerConfig"
-        :hide-y-axis="false"
-      >
-      </LineChart>
+    <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4">
+      <!-- Chart 1 -->
+      <div class="snap-center shrink-0 w-full">
+        <div class="">
+          <LineChart
+            :data="profile?.chartData"
+            :height="250"
+            x-label="Hanchan"
+            y-label="Rank"
+            :x-num-ticks="24"
+            :y-domain="[4, 1]"
+            :y-num-ticks="4"
+            :categories="categories"
+            :x-formatter="xFormatter"
+            :y-formatter="yFormatter"
+            :y-grid-line="true"
+            :curve-type="CurveType.Linear"
+            :marker-config="MarkerConfig"
+            :hide-y-axis="false"
+            hide-legend
+          >
+            <template #tooltip="{ values }">
+              <div>Score: {{ String(values?.rank) }}</div>
+            </template>
+          </LineChart>
+        </div>
+      </div>
+      <!-- Chart 2 -->
+      <div class="snap-center shrink-0 w-full">
+        <div class="">
+          <!-- :y-num-ticks="4" -->
+          <LineChart
+            :data="profile?.chartData2"
+            :height="250"
+            x-label="Hanchan"
+            y-label="Total Point"
+            :x-num-ticks="12"
+            :y-num-ticks="7"
+            :categories="categories"
+            :x-formatter="xFormatter"
+            :y-formatter="yFormatter"
+            :y-domain="[-150, 150]"
+            :y-grid-line="true"
+            :curve-type="CurveType.Linear"
+            :marker-config="MarkerConfig"
+            :hide-y-axis="false"
+            hide-legend
+          >
+          </LineChart>
+        </div>
+      </div>
     </div>
     <div class="flex flex-col items-center p-4">
       <h3 class="text-xl font-semibold">Total Ranking</h3>
@@ -196,19 +205,20 @@ const carouselRef = ref(false);
           body: 'py-4 sm:p-4 ', // remove default padding
         }"
       >
-        <div class="flex flex-col justify-evenly items-center h-20 text-center">
+        <div class="flex flex-col justify-between items-center h-20 text-center">
           <span
             class="text-[12px] text-gray-500 leading-tight capitalize inline-block"
           >
             {{ formatKey(key) }}
           </span>
-          <p class="text-lg font-semibold leading-tight">
+          <p class="text-lg font-semibold leading-tight pb-2">
             {{ value }}
           </p>
         </div>
       </UCard>
     </div>
   </div>
+  <UBanner class="h-[50px]" title="End of the table" />
 </template>
 
 <style scoped>
