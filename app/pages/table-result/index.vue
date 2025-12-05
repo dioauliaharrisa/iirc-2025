@@ -85,5 +85,6 @@ const generateTableName = (i, label) => {
         </div>
       </template>
     </UAccordion>
+    <UBanner class="h-[50px]" title=" " />
   </div>
 </template>
