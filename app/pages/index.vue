@@ -124,5 +124,6 @@ const schedule = [
         />
       </div>
     </UMarquee>
+    <UBanner class="h-[50px]" title=" " />
   </div>
 </template>
